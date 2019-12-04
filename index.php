@@ -4,7 +4,7 @@
 
 Kirby::plugin('bnomei/feed', [
     'options' => [
-        'cache' => true,
+        'cache' => false,
         'debugforce' => true,
         'expires' => (60*24*7), // minutes
     ],
@@ -15,7 +15,7 @@ Kirby::plugin('bnomei/feed', [
     'pagesMethods' => [ // PAGES not PAGE
         'feed' => function ($options = [], $force = null) {
             $response = \Bnomei\Feed::feed($this, $options, $force);
-            kirby()->response()->type($response->type());
+            kirby()->response()->type('text/xml');
             return $response;
         },
     ],
